@@ -9,7 +9,7 @@ import { IoPlayForward } from "react-icons/io5";
 import { IoPlayBack } from "react-icons/io5";
 const Workspace = () => {
   return (
-    <div className="">
+    <div className=" flex flex-col items-center">
       <ul className="flex gap-8 p-4">
         <li>
           <BsCrop />

@@ -1,0 +1,20 @@
+{
+    "projects": [
+      {
+        "id": "video1",
+        "thumbnailUrl": "https://example.com/thumbnails/video1.jpg",
+        "ProjectName": "Project Alpha"
+      },
+      {
+        "id": "video2",
+        "thumbnailUrl": "https://example.com/thumbnails/video2.jpg",
+        "ProjectName": "Project Beta"
+      },
+      {
+        "id": "video3",
+        "thumbnailUrl": "https://example.com/thumbnails/video3.jpg",
+        "ProjectName": "Project Gamma"
+      }
+    ]
+  }
+  
