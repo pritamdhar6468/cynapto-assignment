@@ -15,13 +15,30 @@ import wave from "../assets/waveform.png";
 
 const Editor = () => {
   const videoRef = useRef(null);
-
   const [isPlaying, setIsPlaying] = useState(false);
-  const timelineRef = useRef(null);
-
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentVideoTime, setCurrentVideoTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [pointerPosition, setPointerPosition] = useState(0);
+  const [dd, setDd] = useState(0);
+  const [tt, setTt] = useState(0);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const handleTimeUpdate = () => {
+      const newTime = (video.currentTime / video.duration) * 100;
+      setCurrentVideoTime(newTime);
+      setDd(videoRef.current.currentTime);
+      setTt(videoRef.current.duration);
+    };
+
+    if (video) {
+      video.addEventListener("timeupdate", handleTimeUpdate);
+      setDuration(video.duration);
+
+      return () => {
+        video.removeEventListener("timeupdate", handleTimeUpdate);
+      };
+    }
+  }, [videoRef.current]);
 
   const togglePlayPause = () => {
     if (videoRef.current.paused) {
@@ -32,119 +49,120 @@ const Editor = () => {
       setIsPlaying(false);
     }
   };
-
-  // Function to handle video time update
-  const updateTime = () => {
-    setCurrentTime(videoRef.current.currentTime);
-    updatePointerPosition();
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    const formattedMinutes = String(minutes).padStart(2, "0");
+    const formattedSeconds = String(seconds).padStart(2, "0");
+    return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  // Function to handle video end
-  const handleVideoEnd = () => {
-    setIsPlaying(false);
-    setCurrentTime(0);
-    setPointerPosition(0);
-  };
-
-  // Function to handle seeking forward/backward
   const seek = (time) => {
     videoRef.current.currentTime += time;
-    updatePointerPosition();
   };
 
-  const updatePointerPosition = () => {
-    const currentTimePercentage =
-      (videoRef.current.currentTime / duration) * 100;
-    setPointerPosition(currentTimePercentage);
-  };
-
-  const handlePointerDrag = (e) => {
-    const timelineRect = timelineRef.current.getBoundingClientRect();
-    const clickX = e.clientX - timelineRect.left;
-    const newPosition = (clickX / timelineRect.width) * 100;
-
-    const newTime = (newPosition / 100) * duration;
-    videoRef.current.currentTime = newTime;
-    setPointerPosition(newPosition);
-  };
-
-  const handleInputChange = (e) => {
-    const timeInSeconds = parseFloat(e.target.value);
-    if (
-      !isNaN(timeInSeconds) &&
-      timeInSeconds >= 0 &&
-      timeInSeconds <= duration
-    ) {
-      videoRef.current.currentTime = timeInSeconds;
-      updatePointerPosition();
+  const handleChange = (event) => {
+    const { value } = event.target;
+    if (videoRef.current) {
+      const newTime = (value / 100) * videoRef.current.duration;
+      videoRef.current.currentTime = newTime;
+      setCurrentVideoTime(value);
     }
   };
-
-  const handleSliderChange = (e) => {
-    const newTime = (e.target.value / 100) * duration;
-    videoRef.current.currentTime = newTime;
-    setPointerPosition(e.target.value);
-  };
-
-  // Effect to set video duration and listen to time update
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    setDuration(videoElement.duration);
-
-    // Event listeners
-    videoElement.addEventListener("timeupdate", updateTime);
-    videoElement.addEventListener("ended", handleVideoEnd);
-
-    // Cleanup
-    return () => {
-      videoElement.removeEventListener("timeupdate", updateTime);
-      videoElement.removeEventListener("ended", handleVideoEnd);
-    };
-  }, []);
 
   return (
     <div className="flex flex-col bg-[#EBF4F6] w-[100vw] h-[100vh]">
       <div className="top h-[65vh] flex">
         <Assets />
-        <Workspace videoRef={videoRef} />
+        <Workspace
+          videoRef={videoRef}
+          currentVideoTime={currentVideoTime}
+          setCurrentVideoTime={setCurrentVideoTime}
+        />
         <Properties />
       </div>
-      <div className="bottom bg-white h-[35vh] ">
-        <div className="flex justify-center">
-          <button onClick={() => seek(-10)}>
-            <IoPlayBack className="w-16 h-16" />
-          </button>
-
-          <button onClick={() => togglePlayPause()}>
-            {isPlaying ? (
-              <IoPauseCircleSharp className="w-20 h-20" />
-            ) : (
-              <IoPlayCircleSharp className="w-20 h-20" />
-            )}
-          </button>
-          <button onClick={() => seek(10)}>
-            <IoPlayForward className="w-16 h-16" />
-          </button>
-        </div>
-
-        <div className="flex w-full border border-[#0000005c] shadow-lg">
-          <div className="h-[8rem] flex w-60">
-            <div className="flex justify-center w-full h-full items-center">
-              <span className="text-[1.5rem] font-bold">Track 1</span>
-            </div>{" "}
-            <span className="h-full flex flex-col justify-between p-3"><FaEye className="w-8 h-8"/><BsUnlockFill className="w-8 h-8"/></span>
+      <div className="bottom flex flex-col justify-between bg-white h-[35vh]">
+        <div className="flex justify-center gap-8">
+          <div className="flex gap-3 justify-center">
+            <button onClick={() => seek(-10)}>
+              <IoPlayBack className="w-12 h-12" />
+            </button>
+            <button onClick={togglePlayPause}>
+              {isPlaying ? (
+                <IoPauseCircleSharp className="w-20 h-20" />
+              ) : (
+                <IoPlayCircleSharp className="w-20 h-20" />
+              )}
+            </button>
+            <button onClick={() => seek(10)}>
+              <IoPlayForward className="w-12 h-12" />
+            </button>
           </div>
-          <div className="flex w-full relative justify-center items-center">
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value={pointerPosition}
-              onChange={handleSliderChange}
-              className="w-3/4 slider2 z-50"
-            />
-            {/* <img className="absolute h-[10rem]" src={wave} alt="" /> */}
+
+          <input
+            type="range"
+            value={currentVideoTime}
+            onChange={handleChange}
+            className="appearance-none bg-transparent w-80 [&::-webkit-slider-runnable-track]:rounded-md [&::-webkit-slider-runnable-track]:bg-[#37B7C3] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[15px] [&::-webkit-slider-thumb]:w-[10px] [&::-webkit-slider-thumb]: [&::-webkit-slider-thumb]:bg-[#000000]"
+          />
+
+          <div className="flex gap-3 justify-center items-center text-[1.2rem] text-[#000000d4]">
+            <span className="text-[1.2rem] text-[#000000d4]">
+              {formatTime(dd)}
+            </span>{" "}
+            /{" "}
+            <span className="text-[1.2rem] text-[#000000d4]">
+              {formatTime(tt)}
+            </span>
+          </div>
+        </div>
+        <div>
+          {" "}
+          <div className="flex w-full border border-[#0000005c] shadow-lg">
+            <div className="h-[8rem] flex w-60">
+              <div className="flex justify-center w-full h-full items-center">
+                <span className="text-[1.5rem] font-bold">Track 1</span>
+              </div>
+              <span className="h-full flex flex-col justify-between p-3">
+                <FaEye className="w-8 h-8" />
+                <BsUnlockFill className="w-8 h-8" />
+              </span>
+            </div>
+            <div className="flex w-full relative justify-center items-center">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value={currentVideoTime}
+                onChange={handleChange}
+                className="w-3/4 slider2 z-50"
+              />
+              {/* <img className="absolute h-[10rem]" src={wave} alt="" /> */}
+            </div>
+          </div>
+          <div className="flex w-full border border-[#0000005c] shadow-lg">
+            <div className="h-[8rem] flex w-60">
+              <div className="flex justify-center w-full h-full items-center">
+                <span className="text-[1.5rem] font-bold">Track 2</span>
+              </div>
+              <span className="h-full flex flex-col justify-between p-3">
+                <FaEye className="w-8 h-8" />
+                <BsUnlockFill className="w-8 h-8" />
+              </span>
+            </div>
+            <div className="flex w-full relative justify-center items-center">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                // value={currentVideoTime}
+                // onChange={handleChange}
+                className="w-3/4 slider3 z-50"
+              />
+              {/* <img className="absolute h-[10rem]" src={wave} alt="" /> */}
+            </div>
           </div>
         </div>
       </div>
