@@ -2,10 +2,9 @@ import React from "react";
 import { BsUpload } from "react-icons/bs";
 const Assets = () => {
   return (
-    <div className=" w-[25vw] h-full bg-slate-200 flex flex-col p-4 ">
+    <div className=" w-[25vw] h-full bg-white flex flex-col p-4 ">
       <h1 className="text-4xl font-bold text-gray-600 ">Assets</h1>
-      <hr />
-      <div className="h-full mt-4 flex flex-row gap-2 flex-wrap bg-slate-300 p-4 overflow-y-scroll">
+      <div className="h-full mt-4 flex flex-row gap-2 flex-wrap shadow-xl bg-[#f5f5f5] p-4 overflow-y-scroll">
         <div className="w-full flex flex-wrap h-fit gap-2">
           {" "}
           {/* <div>
