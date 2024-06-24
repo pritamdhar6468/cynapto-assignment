@@ -1,5 +1,6 @@
 import React from "react";
 import { BsUpload } from "react-icons/bs";
+import projects from "../projects.json"
 const Assets = () => {
   return (
     <div className=" w-[25vw] h-full bg-white flex flex-col p-4 ">
@@ -12,9 +13,11 @@ const Assets = () => {
             <video src="" className="w-60 h-40 bg-gray-700"></video>
             <span>oooo.mp3</span>
           </div> */}
-          <video src="" className="w-60 h-40 bg-gray-700"></video>
-          <video src="" className="w-60 h-40 bg-gray-700"></video>
-          <video src="" className="w-60 h-40 bg-gray-700"></video>
+         {projects.projects2.map((project, index) => (
+               <div key={project.id} className="mb-5"><img className="bg-black w-[16rem] h-full" src={project.thumbnailUrl} alt="" />
+               <span className="text-[1.2rem] font-medium">{project.ProjectName}</span>
+               </div>
+            ))}
         </div>
       </div>
       <hr />

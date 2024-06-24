@@ -37,9 +37,11 @@ const Dashboard = () => {
           <div>
             <h3 className=" w-50 p-4 text-[1.8rem] font-medium border-b-2">Recent videos</h3>
           </div>
-          <div className="flex  items-center justify-around gap-2 p-2 mt-4 ">
+          <div className="flex flex-wrap w-fit  items-center justify-start gap-2 p-2 mt-4 ">
             {projects.projects.map((project, index) => (
-               <div key={project.id}><img className="bg-black w-20 h-20" src={project.thumbnailUrl} alt="" /></div>
+               <div key={project.id}><img className="bg-black w-[35rem] h-full" src={project.thumbnailUrl} alt="" />
+               <span className="text-[1.2rem] font-medium">{project.ProjectName}</span>
+               </div>
             ))}
            
           </div>

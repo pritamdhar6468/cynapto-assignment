@@ -2,19 +2,39 @@
     "projects": [
       {
         "id": "video1",
-        "thumbnailUrl": "https://example.com/thumbnails/video1.jpg",
-        "ProjectName": "Project Alpha"
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Project1"
       },
       {
         "id": "video2",
-        "thumbnailUrl": "https://example.com/thumbnails/video2.jpg",
-        "ProjectName": "Project Beta"
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Project 2"
       },
       {
         "id": "video3",
-        "thumbnailUrl": "https://example.com/thumbnails/video3.jpg",
-        "ProjectName": "Project Gamma"
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Project 3"
+      }
+    ],
+    "projects2": [
+      {
+        "id": "audio1",
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Projec001.mp3"
+      },
+      {
+        "id": "audio2",
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Projec002.mpg"
+      },
+      {
+        "id": "audio3",
+        "thumbnailUrl": "./src/assets/vt.jpg",
+        "ProjectName": "Projec003.wav"
       }
     ]
   }
+
+
+
   
