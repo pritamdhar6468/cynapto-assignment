@@ -21,26 +21,13 @@ const Workspace = ({ videoRef, currentVideoTime, setCurrentVideoTime }) => {
           <FaRedo className="w-8 h-8" />
         </li>
       </ul>
-      {/* <div className="m-8">
+      <div className="">
         <video
           ref={videoRef}
           src={video}
           controls
           className="h-[100%] rounded-md bg-slate-500"
         />
-      </div> */}
-      <div
-        className="editing-panel-wrapper  w-full relative"
-        style={{ paddingBottom: "56.25%" }}
-      >
-        <div className="editing-panel absolute inset-0 bg-[#000]">
-          <video
-            ref={videoRef}
-            src={video}
-            controls
-            className="h-[100%] rounded-md bg-slate-500"
-          />
-        </div>
       </div>
     </div>
   );
