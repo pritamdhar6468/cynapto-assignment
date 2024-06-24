@@ -12,7 +12,7 @@ const Sidebar = () => {
       <h1 className="text-[3.5rem] font-extrabold  ">Cynapto</h1>
 
       <div className="flex mt-16 flex-col gap-5">
-        <NavLink className="text-[1.5rem] text-white font-medium flex items-center justify-between px-8 rounded-full bg-[#37B7C3] h-20 w-full">
+        <NavLink to="/editor" className="text-[1.5rem] text-white font-medium flex items-center justify-between px-8 rounded-full bg-[#37B7C3] h-20 w-full">
           <button> New Video </button> <span className="text-[1.8rem]">+</span>
         </NavLink>
         <NavLink className="text-[1.5rem] font-medium flex items-center hover:bg-[#EBF4F6] justify-between px-8 rounded-full h-20 w-full">
