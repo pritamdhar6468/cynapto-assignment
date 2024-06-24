@@ -19,7 +19,7 @@ const Properties = () => {
       {/* <h1 className='text-4xl font-bold text-gray-600'>Properties</h1> */}
       <div className="w-full flex justify-end">
         {" "}
-        <button className="text-[1.5rem] font-medium px-4 py-2  text-gray-600 bg-slate-100 border rounded-md">
+        <button className="text-[1.5rem] font-medium px-4 py-2  text-white bg-[#37B7C3]  border rounded-md">
           Export
         </button>
       </div>

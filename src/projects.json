@@ -3,7 +3,7 @@
       {
         "id": "video1",
         "thumbnailUrl": "./src/assets/vt.jpg",
-        "ProjectName": "Project1"
+        "ProjectName": "Project 1"
       },
       {
         "id": "video2",
@@ -26,11 +26,6 @@
         "id": "audio2",
         "thumbnailUrl": "./src/assets/vt.jpg",
         "ProjectName": "Projec002.mpg"
-      },
-      {
-        "id": "audio3",
-        "thumbnailUrl": "./src/assets/vt.jpg",
-        "ProjectName": "Projec003.wav"
       }
     ]
   }

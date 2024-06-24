@@ -5,12 +5,15 @@ import Properties from "../components/Properties";
 import { HiOutlineZoomIn, HiOutlineZoomOut } from "react-icons/hi";
 import { HiOutlineScissors } from "react-icons/hi2";
 import { FaCopy } from "react-icons/fa";
-import { FaMousePointer } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { BsUnlockFill } from "react-icons/bs";
 import { IoPlayCircleSharp, IoPauseCircleSharp } from "react-icons/io5";
 import { IoPlayForward } from "react-icons/io5";
 import { IoPlayBack } from "react-icons/io5";
+import { PiSquareSplitHorizontalFill } from "react-icons/pi";
+
+import { FaSave } from "react-icons/fa";
+
 import wave from "../assets/waveform.png";
 
 const Editor = () => {
@@ -113,8 +116,14 @@ const Editor = () => {
         />
         <Properties />
       </div>
-      <div className="bottom flex flex-col justify-between bg-white h-[35vh]">
-        <div className="flex justify-center gap-8">
+      <div className="bottom flex flex-col justify-end gap-5 shadow-2xl border-t bg-white h-[35vh]">
+        <div className="flex justify-between px-20 items-center shadow2">
+          <div className="flex gap-8">
+            <HiOutlineScissors className="text-[1.9rem] cursor-pointer" />
+            <PiSquareSplitHorizontalFill className="text-[1.9rem] cursor-pointer" />
+            <FaSave className="text-[1.5rem] mt-1 cursor-pointer" />
+            <FaCopy className="text-[1.5rem] mt-1 cursor-pointer" />
+          </div>
           <div className="flex gap-3 justify-center">
             <button onClick={() => seek(-10)}>
               <IoPlayBack className="w-12 h-12" />
@@ -129,23 +138,29 @@ const Editor = () => {
             <button onClick={() => seek(10)}>
               <IoPlayForward className="w-12 h-12" />
             </button>
+
+            <input
+              type="range"
+              value={currentVideoTime}
+              onChange={handleChange}
+              className="appearance-none bg-transparent w-80 [&::-webkit-slider-runnable-track]:rounded-md [&::-webkit-slider-runnable-track]:bg-[#37B7C3] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[15px] [&::-webkit-slider-thumb]:w-[10px] [&::-webkit-slider-thumb]: [&::-webkit-slider-thumb]:bg-[#000000]"
+            />
+
+            <div className="flex gap-3 justify-center items-center text-[1.2rem] text-[#000000d4]">
+              <span className="text-[1.2rem] text-[#000000d4]">
+                {formatTime(dd)}
+              </span>{" "}
+              /{" "}
+              <span className="text-[1.2rem] text-[#000000d4]">
+                {formatTime(tt)}
+              </span>
+            </div>
           </div>
 
-          <input
-            type="range"
-            value={currentVideoTime}
-            onChange={handleChange}
-            className="appearance-none bg-transparent w-80 [&::-webkit-slider-runnable-track]:rounded-md [&::-webkit-slider-runnable-track]:bg-[#37B7C3] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[15px] [&::-webkit-slider-thumb]:w-[10px] [&::-webkit-slider-thumb]: [&::-webkit-slider-thumb]:bg-[#000000]"
-          />
-
-          <div className="flex gap-3 justify-center items-center text-[1.2rem] text-[#000000d4]">
-            <span className="text-[1.2rem] text-[#000000d4]">
-              {formatTime(dd)}
-            </span>{" "}
-            /{" "}
-            <span className="text-[1.2rem] text-[#000000d4]">
-              {formatTime(tt)}
-            </span>
+          <div className="flex gap-5">
+            <HiOutlineZoomIn className="text-[1.5rem] cursor-pointer" />{" "}
+            <input type="range" name="" id="" />
+            <HiOutlineZoomOut className="text-[1.5rem] cursor-pointer" />
           </div>
         </div>
 
@@ -184,15 +199,15 @@ const Editor = () => {
         <div>
           {" "}
           <div className="flex w-full">
-          <div className="h-[2rem] w-[13.5rem] flex "></div>
-          <div className="flex justify-between w-full text-xl text-gray-600">
-            {getTimelineScale().map(({ time, position, isMiddle }, index) => (
-              <div key={index} className="w-1/11 pr-2 text-center border-r ">
-                {time}
-              </div>
-            ))}
+            <div className="h-[2rem] w-[13.5rem] flex "></div>
+            <div className="flex justify-between w-full text-xl text-gray-600">
+              {getTimelineScale().map(({ time, position, isMiddle }, index) => (
+                <div key={index} className="w-1/11 pr-2 text-center border-r ">
+                  {time}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
           <div className="flex w-full border border-[#0000005c] shadow-lg">
             <div className="h-[8rem] flex w-60">
               <div className="flex justify-center w-full h-full items-center">
