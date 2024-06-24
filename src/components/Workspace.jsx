@@ -26,7 +26,7 @@ const Workspace = ({ videoRef, currentVideoTime, setCurrentVideoTime }) => {
           ref={videoRef}
           src={video}
           controls
-          className="h-[100%] rounded-md bg-slate-500"
+          className=" rounded-md bg-slate-500"
         />
       </div>
     </div>
