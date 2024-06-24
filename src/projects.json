@@ -2,29 +2,29 @@
     "projects": [
       {
         "id": "video1",
-        "thumbnailUrl": "./src/assets/vt.jpg",
+        "thumbnailUrl": "vt.jpg",
         "ProjectName": "Project 1"
       },
       {
         "id": "video2",
-        "thumbnailUrl": "./src/assets/vt.jpg",
+        "thumbnailUrl": "vt.jpg",
         "ProjectName": "Project 2"
       },
       {
         "id": "video3",
-        "thumbnailUrl": "./src/assets/vt.jpg",
+        "thumbnailUrl": "vt.jpg",
         "ProjectName": "Project 3"
       }
     ],
     "projects2": [
       {
         "id": "audio1",
-        "thumbnailUrl": "./src/assets/vt.jpg",
+        "thumbnailUrl": "vt.jpg",
         "ProjectName": "Projec001.mp3"
       },
       {
         "id": "audio2",
-        "thumbnailUrl": "./src/assets/vt.jpg",
+        "thumbnailUrl": "vt.jpg",
         "ProjectName": "Projec002.mpg"
       }
     ]
