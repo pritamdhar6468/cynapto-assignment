@@ -4,17 +4,17 @@ import projects from "../projects.json";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 
-
-
 const Assets = () => {
   return (
     <div className=" w-[25vw] h-full bg-white flex flex-col p-4 ">
       <div className="flex">
         {" "}
-        <NavLink to="/dashboard"> <button>
-          <IoMdArrowRoundBack className="text-[2.5rem] mx-3" />
-        </button>{" "}</NavLink>
-       
+        <NavLink to="/dashboard">
+          {" "}
+          <button>
+            <IoMdArrowRoundBack className="text-[2.5rem] mx-3" />
+          </button>{" "}
+        </NavLink>
         <h1 className="text-4xl font-bold text-gray-600 ">Assets</h1>
       </div>
       <div className="h-full mt-4 flex flex-row gap-2 flex-wrap shadow-xl bg-[#f5f5f5] p-4 overflow-y-scroll">
