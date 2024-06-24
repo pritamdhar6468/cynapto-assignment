@@ -26,8 +26,8 @@ const Editor = () => {
     const handleTimeUpdate = () => {
       const newTime = (video.currentTime / video.duration) * 100;
       setCurrentVideoTime(newTime);
-      setDd(videoRef.current.currentTime);
-      setTt(videoRef.current.duration);
+      setDd(video.currentTime);
+      setTt(video.duration);
     };
 
     if (video) {
@@ -49,12 +49,21 @@ const Editor = () => {
       setIsPlaying(false);
     }
   };
+
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = Math.floor(timeInSeconds % 60);
     const formattedMinutes = String(minutes).padStart(2, "0");
     const formattedSeconds = String(seconds).padStart(2, "0");
     return `${formattedMinutes}:${formattedSeconds}`;
+  };
+
+  const formatTime2 = (timeInSeconds) => {
+    if (timeInSeconds < 60) {
+      return String(Math.floor(timeInSeconds)).padStart(2, "0");
+    }
+    const minutes = Math.floor(timeInSeconds / 60);
+    return String(minutes).padStart(2, "0");
   };
 
   const seek = (time) => {
@@ -68,6 +77,29 @@ const Editor = () => {
       videoRef.current.currentTime = newTime;
       setCurrentVideoTime(value);
     }
+  };
+
+  const scaleNumbers = Array.from({ length: 21 }, (_, i) => i);
+
+  const getTimelineScale = () => {
+    const segments = 20;
+    const segmentDuration = tt / segments;
+    const scale = [];
+
+    for (let i = 0; i <= segments; i++) {
+      const time = segmentDuration * i;
+      const position = (i / segments) * 100;
+      scale.push({ time: formatTime2(time), position });
+
+      // Add middle lines
+      if (i < segments) {
+        const middleTime = segmentDuration * (i + 0.5);
+        const middlePosition = ((i + 0.5) / segments) * 100;
+        scale.push({ time: "", position: middlePosition, isMiddle: true });
+      }
+    }
+
+    return scale;
   };
 
   return (
@@ -116,8 +148,51 @@ const Editor = () => {
             </span>
           </div>
         </div>
+
+        {/* <div className="flex w-full">
+          <div className="h-[2rem] w-60 flex "></div>
+          <div className="flex justify-between w-full text-xl text-gray-600">
+            {getTimelineScale().map(({ time, position, isMiddle }, index) => (
+              <div key={index} className="w-1/11 pr-2 text-center border-r ">
+                {time}
+              </div>
+            ))}
+          </div>
+        </div> */}
+
+        {/* <div className="timeline-scale flex justify-center mb-4 relative h-[2rem] w-full">
+          {getTimelineScale().map(({ time, position, isMiddle }, index) => (
+            <div className="h-[5rem] relative" key={index}>
+              <span
+                className={`timeline-mark text-sm text-gray-600 ${
+                  isMiddle ? "hidden" : ""
+                }`}
+                style={{ left: `${position}%` }}
+              >
+                {time}
+              </span>
+              <div
+                className={`vertical-line ${
+                  isMiddle ? "small-line" : ""
+                } bg-gray-300`}
+                style={{ left: `${position}%` }}
+              ></div>
+            </div>
+          ))}
+        </div> */}
+
         <div>
           {" "}
+          <div className="flex w-full">
+          <div className="h-[2rem] w-[13.5rem] flex "></div>
+          <div className="flex justify-between w-full text-xl text-gray-600">
+            {getTimelineScale().map(({ time, position, isMiddle }, index) => (
+              <div key={index} className="w-1/11 pr-2 text-center border-r ">
+                {time}
+              </div>
+            ))}
+          </div>
+        </div>
           <div className="flex w-full border border-[#0000005c] shadow-lg">
             <div className="h-[8rem] flex w-60">
               <div className="flex justify-center w-full h-full items-center">
@@ -157,8 +232,6 @@ const Editor = () => {
                 min="0"
                 max="100"
                 step="1"
-                // value={currentVideoTime}
-                // onChange={handleChange}
                 className="w-3/4 slider3 z-50"
               />
               {/* <img className="absolute h-[10rem]" src={wave} alt="" /> */}
