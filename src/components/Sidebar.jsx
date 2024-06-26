@@ -15,13 +15,13 @@ const Sidebar = () => {
         <NavLink to="/editor" className="text-[1.5rem] text-white font-medium flex items-center justify-between px-8 rounded-full bg-[#37B7C3] h-20 w-full">
           <button> New Video </button> <span className="text-[1.8rem]">+</span>
         </NavLink>
-        <NavLink className="text-[1.5rem] font-medium flex items-center hover:bg-[#EBF4F6] justify-between px-8 rounded-full h-20 w-full">
+        <NavLink to="/dashboard" className="text-[1.5rem] font-medium flex items-center hover:bg-[#EBF4F6] justify-between px-8 rounded-full h-20 w-full">
           <button> Home </button>
         </NavLink>
         <NavLink className="text-[1.5rem] font-medium flex items-center justify-between  hover:bg-[#EBF4F6] px-8 rounded-full h-20 w-full">
           <button> Template </button>
         </NavLink>
-        <NavLink className="text-[1.5rem] font-medium flex items-center justify-between px-8  hover:bg-[#EBF4F6] rounded-full  h-20 w-full">
+        <NavLink to="/allvideo" className="text-[1.5rem] font-medium flex items-center justify-between px-8  hover:bg-[#EBF4F6] rounded-full  h-20 w-full">
           <button> All Videos </button>
         </NavLink>
       </div>
