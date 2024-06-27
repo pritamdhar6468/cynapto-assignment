@@ -38,9 +38,11 @@ const Dashboard = () => {
             <h3 className=" w-50 p-4 text-[1.8rem] font-medium ">
               Recent videos
             </h3>
-            <h3 className=" w-50 p-4 text-[1.5rem] cursor-pointer text-cyan-700 font-medium ">
+           <NavLink to="/allvideo">
+           <h3 className=" w-50 p-4 text-[1.5rem] cursor-pointer text-cyan-700 font-medium ">
               All Videos {">"}
             </h3>
+           </NavLink>
           </div>
           <div className="flex flex-wrap w-fit  items-center justify-start gap-2 p-2 mt-4 ">
             {projects.projects.map((project, index) => (
