@@ -23,7 +23,7 @@ const Dashboard = () => {
                 </span>
               </div>
             </NavLink>
-            <div className="w-[25rem] cursor-pointer">
+            <NavLink to="/record" className="w-[25rem] cursor-pointer">
               <div className="border flex gap-3 items-center justify-start p-4 w-full bg-[white]  rounded-full ">
                 <span className="w-16 h-16 p-3 rounded-full bg-[#37B7C3] font-semibold text-[1.5rem]">
                   <RiVideoOnLine className="w-full text-white h-full" />
@@ -32,7 +32,7 @@ const Dashboard = () => {
                   Record Video
                 </span>
               </div>
-            </div>
+            </NavLink>
           </div>
           <div className="flex justify-between">
             <h3 className=" w-50 p-4 text-[1.8rem] font-medium ">
