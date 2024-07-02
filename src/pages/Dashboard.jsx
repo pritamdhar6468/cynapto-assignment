@@ -8,7 +8,7 @@ import projects from ".././projects.json";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex flex-row ">
+      <div className="flex  flex-row ">
         <Sidebar />
         <div className=" w-full flex flex-col p-8  bg-[#EBF4F6]">
           <Navbar />

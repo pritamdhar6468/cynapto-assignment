@@ -13,8 +13,16 @@ const Navbar = () => {
         />
         <CiSearch className="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 text-[1.8rem]" />
       </div>
-      <div className="h-16 w-16 bg-white p-3 rounded-full">
-        <img src={profile} alt="" className=" w-full bg-white rounded-full" />
+      <div>
+        <div className="h-16 w-16 bg-white p-3 rounded-full">
+          <img src={profile} alt="" className=" w-full bg-white rounded-full" />
+        </div>
+        <div className="border text-[1.5rem]  flex flex-col w-[15rem] p-8 hidden bg-white">
+          <button>profile</button>
+          <button>setting</button>
+          <button>accounts</button>
+          <button>logout</button>
+        </div>
       </div>
     </div>
   );

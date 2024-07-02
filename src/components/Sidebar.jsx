@@ -9,7 +9,7 @@ import { TbLogout } from "react-icons/tb";
 
 const Sidebar = () => {
   return (
-    <div className=" bg-[#ffffff] h-screen w-[35rem] justify-between flex flex-col  p-8 ">
+    <div className=" bg-[#ffffff]   h-screen  w-[35rem] justify-between flex flex-col  p-8 ">
       <div className="">
         <h1 className="text-[3.5rem] font-extrabold  ">Cynapto</h1>
 
@@ -40,7 +40,7 @@ const Sidebar = () => {
       </div>
       <div className="flex item-center  justify-center p-4 rounded-full cursor-pointer hover:bg-slate-200  gap-2 text-[1.8rem] bg-slate-300 font-semibold ">
         Logout
-        <span className="text-[3rem] mt-2">
+        <span className="text-[3rem]  mt-2">
           <TbLogout />
         </span>
       </div>

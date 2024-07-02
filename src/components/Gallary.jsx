@@ -3,7 +3,7 @@ import projects from "../projects.json"
 
 const Gallary = () => {
   return (
-    <div className="flex flex-wrap w-full " >
+    <div className="flex flex-wrap w-full  " >
     {projects.projects3.map((project, index) => (
             <div key={project.id} className="mt-4  p-6">
               <img
